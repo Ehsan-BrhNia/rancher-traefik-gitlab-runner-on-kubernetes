@@ -1,0 +1,13 @@
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: JoinConfiguration
+
+discovery:
+  bootstrapToken:
+    apiServerEndpoint: "192.168.122.204:6443"
+    token: "xjktgx.eti65uqixgz78fl4"
+    caCertHashes:
+      - "sha256:d35511860bf2fbc28a8e1182738da217cb9579b48ebef498b38a3bef9e8d3452"
+
+nodeRegistration:
+  criSocket: unix:///run/containerd/containerd.sock
+  imagePullPolicy: IfNotPresent

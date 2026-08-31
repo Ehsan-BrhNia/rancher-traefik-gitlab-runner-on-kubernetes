@@ -1,0 +1,34 @@
+gitlabUrl: https://gitlab.com/
+
+replicas: 1
+concurrent: 1
+checkInterval: 30
+
+runnerRegistrationToken: ""
+runnerToken: ""
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+  name: gitlab-runner
+
+runners:
+  secret: gitlab-runner-secret
+
+  config: |
+    [[runners]]
+      name = "kubernetes-week1-runner"
+      executor = "kubernetes"
+
+      [runners.kubernetes]
+        namespace = "gitlab-runner"
+        image = "alpine:3.22"
+        privileged = false
+        poll_timeout = 600
+
+        cpu_request = "100m"
+        memory_request = "128Mi"
+        cpu_limit = "500m"
+        memory_limit = "512Mi"

@@ -1,0 +1,21 @@
+hostname: 192.168.122.204.sslip.io
+
+replicas: 1
+
+ingress:
+  ingressClassName: traefik
+
+  extraAnnotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+
+  tls:
+    source: rancher
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+
+  limits:
+    cpu: "1"
+    memory: 2Gi

@@ -1,0 +1,29 @@
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: InitConfiguration
+
+localAPIEndpoint:
+  advertiseAddress: 192.168.122.204
+  bindPort: 6443
+
+nodeRegistration:
+  name: server04
+  criSocket: unix:///run/containerd/containerd.sock
+  imagePullPolicy: IfNotPresent
+
+---
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: ClusterConfiguration
+
+clusterName: kubernetes-lab
+kubernetesVersion: v1.36.4
+controlPlaneEndpoint: "192.168.122.204:6443"
+
+apiServer:
+  certSANs:
+    - server04
+    - 192.168.122.204
+
+networking:
+  serviceSubnet: 10.96.0.0/12
+  podSubnet: 10.244.0.0/16
+  dnsDomain: cluster.local
