@@ -1,4 +1,4 @@
-# Kubernetes Week 1 Project
+
 
 ## Rancher, Traefik, and GitLab Runner on Kubernetes
 
